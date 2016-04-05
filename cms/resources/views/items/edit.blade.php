@@ -1,0 +1,15 @@
+@extends('layouts.default')
+
+@section('title', 'Edit Item')
+
+@section('content')
+  @include('layouts.nav')
+  <h1>Edit Item</h1>
+
+  {!! Form::model($item, ['url' => ['items/update', $item->id], 'method' => 'PATCH']) !!}
+    {!! Form::label('title', 'タイトル') !!}
+    {!! Form::text('title', null) !!}
+    <br>
+    {!! Form::submit('Edit Item', ['data-role' => 'button']) !!}
+  {!! Form::close() !!}
+@endsection

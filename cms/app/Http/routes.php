@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Database\Schema\Blueprint;
+use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -11,9 +14,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +31,27 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
     //
+    Route::get('/', 'InitRoutesController@index');
+
+    Route::get('auth/register', function() {
+      $users = User::all()->toArray();
+      if (empty($users)) {
+        return view('auth.register');
+      } else {
+        return redirect('items');
+      }
+    });
+    Route::get('auth/login', function() {
+      $users = User::all()->toArray();
+      if (empty($users)) {
+        return redirect('auth/register');
+      } elseif (Auth::guest()) {
+        return view('auth/login');
+      } else {
+        return redirect('items');
+      }
+    });
+    Route::controller('auth', 'Auth\AuthController');
+    Route::controller('items', 'ItemsController');
+    Route::controller('posts', 'PostsController');
 });
