@@ -63,4 +63,13 @@ class ItemsController extends Controller
       \Session::flash('flash_message', 'Itemを更新しました。');
       return redirect('items');
     }
+
+    public function deleteDestroy($id)
+    {
+      $item = Item::findOrFail($id);
+      $title = $item->title;
+      $item->delete();
+      \Session::flash('flash_message', $title . 'を更新しました。');
+      return redirect('items');
+    }
 }

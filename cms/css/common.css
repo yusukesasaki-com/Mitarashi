@@ -14,3 +14,11 @@ nav li > a {
   padding: 0 20px;
   display: inline-block;
 }
+
+form[id^="delete"] {
+  display: inline-block;
+}
+
+table .operation {
+  width: 100px;
+}
