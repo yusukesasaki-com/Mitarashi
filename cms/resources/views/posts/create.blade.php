@@ -19,8 +19,8 @@
     {!! Form::input('date', 'published_at', null) !!}
     <br>
     {!! Form::label('状態') !!}
-    <label>{!! Form::input('radio', 'state', '0', ['checked']) !!} 下書</label>
-    <label>{!! Form::input('radio', 'state', '1') !!} 公開</label>
+    <label>{!! Form::radio('state', '0', true) !!} 下書</label>
+    <label>{!! Form::radio('state', '1') !!} 公開</label>
     <br>
     {!! Form::submit('新規投稿', ['data-role' => 'button']) !!}
   {!! Form::close() !!}

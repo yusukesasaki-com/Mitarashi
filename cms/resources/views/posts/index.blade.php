@@ -19,14 +19,27 @@
           <tr>
             <td>{{ $post->title }}</td>
             <td>
-              編集 ｜
-              削除
+              {!! link_to(url('posts/edit', $post->id), '編集') !!} ｜
+              {!! Form::open(['url' => ['posts/destroy', $post->id], 'method' => 'DELETE', 'id' => 'delete_form_' . $post->id]) !!}
+                {!! link_to(url('#'), '削除', ['data-id' => $post->id, 'class' => 'delete']) !!}
+              {!! Form::close() !!}
             </td>
           </tr>
         @empty
-          <li>記事がありません</li>
+          <td>記事がありません</td>
       @endforelse
       </tbody>
     </table>
   </div>
+  <script>
+  $(function() {
+    $('.delete').on('click', function() {
+      var id = $(this).data('id');
+      if(confirm('削除しますか？')) {
+        $('#delete_form_' + id).submit();
+      }
+      return false;
+    });
+  });
+  </script>
 @endsection

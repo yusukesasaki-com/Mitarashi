@@ -27,4 +27,25 @@ class PostsController extends Controller
       Post::create($request->all());
       return redirect('items/posts/' . $request->item_id);
     }
+
+    public function getEdit($id)
+    {
+      $post = Post::findOrFail($id);
+      return view('posts.edit', compact('post'));
+    }
+
+    public function patchUpdate(Request $request, $id)
+    {
+      $rules = [
+        'title' => 'required',
+        'body' => 'required',
+        'published_at' => 'required|date'
+      ];
+      $post = Post::findOrFail($id);
+      $this->Validate($request, $rules);
+      $post->update($request->all());
+      \Session::flash('flash_message', 'Postを更新しました。');
+      return redirect('items/posts/' . $post->item_id);
+    }
+
 }
