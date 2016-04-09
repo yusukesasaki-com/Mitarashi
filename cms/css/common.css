@@ -22,3 +22,7 @@ form[id^="delete"] {
 table .operation {
   width: 100px;
 }
+
+table .state {
+  width: 70px;
+}

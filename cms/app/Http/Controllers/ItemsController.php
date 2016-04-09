@@ -72,4 +72,15 @@ class ItemsController extends Controller
       \Session::flash('flash_message', $title . '　を削除しました。');
       return redirect('items');
     }
+
+    public function postSortable(Request $request)
+    {
+      parse_str($request->sort);
+      foreach ($sort as $sort_number => $id) {
+        $item = Item::findOrFail($id);
+        $item->sort = $sort_number;
+        $item->save();
+      }
+      return 'done';
+    }
 }

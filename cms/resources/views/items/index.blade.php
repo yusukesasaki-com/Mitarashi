@@ -7,7 +7,7 @@
   <h1>Items</h1>
 
   <div class="table-responsive">
-    <table>
+    <table class="sortable">
       <thead>
         <tr>
           <th>タイトル</th>
@@ -16,8 +16,8 @@
       </thead>
       <tbody>
         @foreach ($items as $item)
-          <tr>
-            <td>{!! link_to(url('items/posts', $item->id), $item->title) !!} {{ $item->sort }}</td>
+          <tr id="sort_{{ $item->id }}">
+            <td>{!! link_to(url('items/posts', $item->id), $item->title) !!}</td>
             <td>
               {!! link_to(url('items/edit', $item->id), '編集') !!} ｜
               {!! Form::open(['url' => ['items/destroy', $item->id], 'method' => 'DELETE', 'id' => 'delete_form_' . $item->id]) !!}
@@ -37,6 +37,15 @@
         $('#delete_form_' + id).submit();
       }
       return false;
+    });
+    $('.sortable tbody').sortable({
+      cursor: 'move',
+      opacity: .3,
+      update: function() {
+        $.post('{{ url('items/sortable') }}', {
+          sort: $(this).sortable('serialize')
+        });
+      }
     });
   });
   </script>

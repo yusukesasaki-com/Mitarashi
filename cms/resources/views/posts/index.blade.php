@@ -11,13 +11,15 @@
       <thead>
         <tr>
           <th>タイトル</th>
+          <th class="state">状態</th>
           <th class="operation">操作</th>
         </tr>
       </thead>
       <tbody>
         @forelse ($posts as $post)
           <tr>
-            <td>{{ $post->title }}</td>
+            <td>{!! link_to(url('posts/edit', $post->id), $post->title) !!}</td>
+            <td>{{ $post->state == 0 ? '下書' : '公開' }}</td>
             <td>
               {!! link_to(url('posts/edit', $post->id), '編集') !!} ｜
               {!! Form::open(['url' => ['posts/destroy', $post->id], 'method' => 'DELETE', 'id' => 'delete_form_' . $post->id]) !!}
