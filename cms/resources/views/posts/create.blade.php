@@ -16,7 +16,7 @@
     {!! Form::textarea('body', null) !!}
     <br>
     {!! Form::label('投稿日') !!}
-    {!! Form::input('date', 'published_at', null) !!}
+    {!! Form::input('date', 'published_at', date('Y-m-d')) !!}
     <br>
     {!! Form::label('状態') !!}
     <label>{!! Form::radio('state', '0', true) !!} 下書</label>

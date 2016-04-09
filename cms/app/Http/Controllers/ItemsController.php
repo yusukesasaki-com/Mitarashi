@@ -60,7 +60,7 @@ class ItemsController extends Controller
       $item = Item::findOrFail($id);
       $this->Validate($request, $rules);
       $item->update($request->all());
-      \Session::flash('flash_message', 'Itemを更新しました。');
+      \Session::flash('flash_message', $item->title . '　を更新しました。');
       return redirect('items');
     }
 
@@ -69,7 +69,7 @@ class ItemsController extends Controller
       $item = Item::findOrFail($id);
       $title = $item->title;
       $item->delete();
-      \Session::flash('flash_message', $title . 'を更新しました。');
+      \Session::flash('flash_message', $title . '　を削除しました。');
       return redirect('items');
     }
 }

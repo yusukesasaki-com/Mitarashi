@@ -44,8 +44,17 @@ class PostsController extends Controller
       $post = Post::findOrFail($id);
       $this->Validate($request, $rules);
       $post->update($request->all());
-      \Session::flash('flash_message', 'Postを更新しました。');
+      \Session::flash('flash_message', $post->title . '　を更新しました。');
       return redirect('items/posts/' . $post->item_id);
     }
 
+    public function deleteDestroy($id)
+    {
+      $post = Post::findOrFail($id);
+      $title = $post->title;
+      $item_id = $post->item_id;
+      $post->delete();
+      \Session::flash('flash_message', $title . '　を削除しました。');
+      return redirect('items/posts/' . $item_id);
+    }
 }
