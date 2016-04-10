@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($items as $item)
+        @forelse ($items as $item)
           <tr id="sort_{{ $item->id }}">
             <td>{!! link_to(url('items/posts', $item->id), $item->title) !!}</td>
             <td>
@@ -25,7 +25,11 @@
               {!! Form::close() !!}
             </td>
           </tr>
-        @endforeach
+        @empty
+          <tr>
+            <td colspan="3">Itemがありません</td>
+          </tr>
+        @endforelse
       </tbody>
     </table>
   </div>
