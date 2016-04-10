@@ -3153,5 +3153,50 @@
         ],
         "description": "HTML and Form Builders for the Laravel Framework",
         "homepage": "http://laravelcollective.com"
+    },
+    {
+        "name": "ktquez/laravel-tinymce",
+        "version": "v1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ktquez/laravel-tinymce.git",
+            "reference": "ec6e4b176f463f7557625a6eda9c09ae1b3c4802"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ktquez/laravel-tinymce/zipball/ec6e4b176f463f7557625a6eda9c09ae1b3c4802",
+            "reference": "ec6e4b176f463f7557625a6eda9c09ae1b3c4802",
+            "shasum": ""
+        },
+        "time": "2016-03-31 11:31:48",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Ktquez\\Tinymce\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Alan Albuquerque: ktquez",
+                "email": "ktquez@gmail.com"
+            }
+        ],
+        "description": "TinyMCE editor for Laravel and Lumen Framework",
+        "homepage": "https://github.com/ktquez/laravel-tinymce",
+        "keywords": [
+            "CKEditor",
+            "editor",
+            "laravel",
+            "lumen",
+            "textarea",
+            "tinymce",
+            "wysiwyg"
+        ]
     }
 ]
