@@ -28,8 +28,10 @@
             </td>
           </tr>
         @empty
-          <td>記事がありません</td>
-      @endforelse
+          <tr>
+            <td colspan="3">記事がありません</td>
+          </tr>
+        @endforelse
       </tbody>
     </table>
   </div>

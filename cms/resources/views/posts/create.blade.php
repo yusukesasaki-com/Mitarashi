@@ -13,7 +13,8 @@
     {!! Form::text('title', null) !!}
     <br>
     {!! Form::label('本文') !!}
-    {!! Form::textarea('body', null) !!}
+    {!! Form::textarea('body', null, ['class' => 'tinymce']) !!}
+    @include('tinymce::tpl')
     <br>
     {!! Form::label('投稿日') !!}
     {!! Form::input('date', 'published_at', date('Y-m-d')) !!}
