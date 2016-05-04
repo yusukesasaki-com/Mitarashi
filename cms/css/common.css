@@ -23,6 +23,17 @@ table .operation {
   width: 100px;
 }
 
+table .getcode {
+  width: 100px;
+}
+
+table input[id^="getcode_"] {
+  width: 30px;
+  padding: 3px;
+  line-height: 20px;
+  text-align: center;
+}
+
 table .state {
   width: 70px;
 }

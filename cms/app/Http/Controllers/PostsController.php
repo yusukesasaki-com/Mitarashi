@@ -10,6 +10,11 @@ use App\Post;
 class PostsController extends Controller
 {
     //
+    public function __construct()
+    {
+      $this->middleware('auth', ['except' => ['getList']]);
+    }
+
     public function getCreate($item_id)
     {
       return view('posts.create', compact('item_id'));
@@ -56,5 +61,16 @@ class PostsController extends Controller
       $post->delete();
       \Session::flash('flash_message', $title . '　を削除しました。');
       return redirect('items/posts/' . $item_id);
+    }
+
+    public function getList($item_id, $limit)
+    {
+      $posts = Post::where('item_id', '=', $item_id)->orderBy('published_at', 'desc')->orderBy('id', 'desc')->limit($limit)->get()->toArray();
+      return view('posts.list', compact('posts'));
+    }
+
+    public function getGetcodelist($item_id, $num)
+    {
+      return view('posts.getcode.list', compact('item_id', 'num'));
     }
 }
