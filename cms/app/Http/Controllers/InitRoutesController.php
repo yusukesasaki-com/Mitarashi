@@ -39,6 +39,9 @@ class InitRoutesController extends Controller
           $table->increments('id');
           $table->string('title');
           $table->integer('sort');
+          $table->tinyInteger('list_type');
+          $table->tinyInteger('summary_type');
+          $table->text('url');
           $table->timestamps();
         });
         \Schema::create('posts', function (Blueprint $table) {
