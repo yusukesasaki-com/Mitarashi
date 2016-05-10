@@ -7,9 +7,6 @@
   <h1>Edit Item</h1>
 
   {!! Form::model($item, ['url' => ['items/update', $item->id], 'method' => 'PATCH']) !!}
-    {!! Form::label('title', 'タイトル') !!}
-    {!! Form::text('title', null) !!}
-    <br>
-    {!! Form::submit('Edit Item', ['data-role' => 'button']) !!}
+    @include('items.form', ['submitButton' => 'Edit Item', 'checked' => false])
   {!! Form::close() !!}
 @endsection

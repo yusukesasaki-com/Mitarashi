@@ -7,9 +7,6 @@
   <h1>Add Item</h1>
 
   {!! Form::open(['url' => 'items/store', 'method' => 'post']) !!}
-    {!! Form::label('title', 'タイトル') !!}
-    {!! Form::text('title', null) !!}
-    <br>
-    {!! Form::submit('Add Item', ['data-role' => 'button']) !!}
+    @include('items.form', ['submitButton' => 'Add Item', 'checked' => true])
   {!! Form::close() !!}
 @endsection

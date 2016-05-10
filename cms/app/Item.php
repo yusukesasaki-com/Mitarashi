@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     //
-    protected $fillable = ['title', 'sort'];
+    protected $fillable = ['title', 'sort', 'list_type', 'summary_type', 'url'];
 
     public function posts()
     {

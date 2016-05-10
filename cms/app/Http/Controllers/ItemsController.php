@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Http\Requests\ItemRequest;
 use App\Item;
 use App\Post;
 
@@ -34,14 +33,11 @@ class ItemsController extends Controller
       return view('items.create');
     }
 
-    public function postStore(Request $request)
+    public function postStore(ItemRequest $request)
     {
-      $rules = [
-        'title' => 'required'
-      ];
-      $this->Validate($request, $rules);
-      $sort = Item::max('sort') + 1;
-      Item::create(['title' => $request->title, 'sort' => $sort]);
+      $data = $request->all();
+      $data += ['sort' => Item::max('sort') + 1];
+      Item::create($data);
       \Session::flash('flash_message', 'Itemを作成しました。');
       return redirect('items');
     }
@@ -52,13 +48,9 @@ class ItemsController extends Controller
       return view('items.edit', compact('item'));
     }
 
-    public function patchUpdate(Request $request, $id)
+    public function patchUpdate(ItemRequest $request, $id)
     {
-      $rules = [
-        'title' => 'required'
-      ];
       $item = Item::findOrFail($id);
-      $this->Validate($request, $rules);
       $item->update($request->all());
       \Session::flash('flash_message', $item->title . '　を更新しました。');
       return redirect('items');
