@@ -66,11 +66,13 @@ class PostsController extends Controller
     public function getList($item_id, $limit)
     {
       $posts = Post::where('item_id', '=', $item_id)->orderBy('published_at', 'desc')->orderBy('id', 'desc')->limit($limit)->get()->toArray();
-      return view('posts.list', compact('posts'));
+      $item = Item::findOrFail($item_id)->toArray();
+      return view('posts.list', compact('posts', 'item'));
     }
 
     public function getGetcodelist($item_id, $num)
     {
       return view('posts.getcode.list', compact('item_id', 'num'));
     }
+
 }
