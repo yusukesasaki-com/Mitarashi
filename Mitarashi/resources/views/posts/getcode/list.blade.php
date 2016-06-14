@@ -16,5 +16,10 @@
 
 <?php echo file_get_contents("http://" . $_SERVER["SERVER_NAME"] . "/Mitarashi/posts/list/" . $item_id . "/" . $num); ?>
 
+<script>
+$('a').on('click', function(){
+  return false;
+});
+</script>
 
 @endsection
