@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('css')
-  <link rel="stylesheet" href="/cms/css/login.css">
+  <link rel="stylesheet" href="/Mitarashi/css/login.css">
 @endsection
 
 @section('title', 'Login')
