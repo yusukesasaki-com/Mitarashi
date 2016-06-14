@@ -9,7 +9,7 @@
     <?php if ($item['list_type'] == 0) : ?>
 
         <?php foreach ($posts as $post) : ?>
-            <li><a href="<?php echo h($item["url"]); ?>"><?php echo h($post["title"]); ?></a></li>
+            <li><a href="<?php echo h($item["url"]) . "?id=" . $post["id"]; ?>"><?php echo h($post["title"]); ?></a></li>
         <?php endforeach; ?>
 
     <?php elseif ($item['list_type'] == 1) : ?>
@@ -17,7 +17,7 @@
       <?php foreach ($posts as $post) : ?>
         <li>
           <span><?php echo date("Y/m/d　", strtotime($post["published_at"])); ?></span>
-          <a href="<?php echo h($item["url"]); ?>"><?php echo h($post["title"]); ?></a>
+          <a href="<?php echo h($item["url"]) . "?id=" . $post["id"]; ?>"><?php echo h($post["title"]); ?></a>
         </li>
       <?php endforeach; ?>
 
@@ -26,7 +26,7 @@
       <?php foreach ($posts as $post) : ?>
         <li>
           <span><?php echo date("Y/m/d　", strtotime($post["published_at"])); ?></span><br>
-          <a href="<?php echo h($item["url"]); ?>"><?php echo h($post["title"]); ?></a>
+          <a href="<?php echo h($item["url"]) . "?id=" . $post["id"]; ?>"><?php echo h($post["title"]); ?></a>
         </li>
       <?php endforeach; ?>
 
