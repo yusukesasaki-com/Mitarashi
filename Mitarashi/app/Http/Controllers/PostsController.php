@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Post;
+use App\Item;
 
 class PostsController extends Controller
 {
     //
     public function __construct()
     {
-      $this->middleware('auth', ['except' => ['getList']]);
+      $this->middleware('auth', ['except' => ['getList', 'getSummary']]);
     }
 
     public function getCreate($item_id)
@@ -75,4 +76,15 @@ class PostsController extends Controller
       return view('posts.getcode.list', compact('item_id', 'num'));
     }
 
+    public function getSummary($item_id, $limit)
+    {
+      $posts = Post::where('item_id', '=', $item_id)->orderBy('published_at', 'desc')->orderBy('id', 'desc')->limit($limit)->get()->toArray();
+      $item = Item::findOrFail($item_id)->toArray();
+      return view('posts.summary', compact('posts', 'item'));
+    }
+
+    public function getGetcodesummary($item_id, $num)
+    {
+      return view('posts.getcode.summary', compact('item_id', 'num'));
+    }
 }

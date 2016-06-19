@@ -3,7 +3,7 @@
 @section('title', 'Items')
 
 @section('css')
-<link rel="stylesheet" href="/cms/css/colorbox.css">
+<link rel="stylesheet" href="/Mitarashi/css/colorbox.css">
 @endsection
 
 @section('content')
@@ -26,16 +26,16 @@
           <tr id="sort_{{ $item->id }}">
             <td>{!! link_to(url('items/posts', $item->id), $item->title) !!}</td>
             <td>
-              <input type="text" id="getcode_{{ $item->id }}">
-              {!! link_to(url('posts/getcodelist', [$item->id]), '取得', ['data-id' => $item->id, 'class' => 'getcode']) !!}
+              <input type="text" id="getcode_list_{{ $item->id }}">
+              {!! link_to(url('posts/getcodelist', [$item->id]), '取得', ['data-id' => $item->id, 'data-type' => 'list', 'class' => 'getcode']) !!}
             </td>
             <td>
-              <input type="text" id="getcode_{{ $item->id }}">
-              {!! link_to(url('posts/getcodesummary', [$item->id]), '取得', ['data-id' => $item->id, 'class' => 'getcode']) !!}
+              <input type="text" id="getcode_summary_{{ $item->id }}">
+              {!! link_to(url('posts/getcodesummary', [$item->id]), '取得', ['data-id' => $item->id, 'data-type' => 'summary', 'class' => 'getcode']) !!}
             </td>
             <td>
-              <input type="text" id="getcode_{{ $item->id }}">
-              {!! link_to(url('posts/getcodedetail', [$item->id]), '取得', ['data-id' => $item->id, 'class' => 'getcode']) !!}
+              <input type="text" id="getcode_detail_{{ $item->id }}">
+              {!! link_to(url('posts/getcodedetail', [$item->id]), '取得', ['data-id' => $item->id, 'data-type' => 'detail', 'class' => 'getcode']) !!}
             </td>
             <td>
               {!! link_to(url('items/edit', $item->id), '編集') !!} ｜
@@ -52,12 +52,13 @@
       </tbody>
     </table>
   </div>
-  <script src="/cms/js/jquery.colorbox-min.js"></script>
+  <script src="/Mitarashi/js/jquery.colorbox-min.js"></script>
   <script>
   $(function() {
     $('.getcode').on('click', function() {
       var id = $(this).data('id');
-      var num = $('#getcode_' + id).val();
+      var type = $(this).data('type');
+      var num = $('#getcode_' + type + '_' + id).val();
       if (num > 0) {
         var link = $(this).attr('href') + '/' + num;
         $(this).attr('href', link);
