@@ -13,7 +13,7 @@ class PostsController extends Controller
     //
     public function __construct()
     {
-      $this->middleware('auth', ['except' => ['getList', 'getSummary']]);
+      $this->middleware('auth', ['except' => ['getList', 'getSummary', 'getDetail']]);
     }
 
     public function getCreate($item_id)
@@ -66,7 +66,7 @@ class PostsController extends Controller
 
     public function getList($item_id, $limit)
     {
-      $posts = Post::where('item_id', '=', $item_id)->orderBy('published_at', 'desc')->orderBy('id', 'desc')->limit($limit)->get()->toArray();
+      $posts = Post::where('item_id', '=', $item_id)->where('state', '=', '1')->orderBy('published_at', 'desc')->orderBy('id', 'desc')->limit($limit)->get()->toArray();
       $item = Item::findOrFail($item_id)->toArray();
       return view('posts.list', compact('posts', 'item'));
     }
@@ -78,7 +78,7 @@ class PostsController extends Controller
 
     public function getSummary($item_id, $limit)
     {
-      $posts = Post::where('item_id', '=', $item_id)->orderBy('published_at', 'desc')->orderBy('id', 'desc')->limit($limit)->get()->toArray();
+      $posts = Post::where('item_id', '=', $item_id)->where('state', '=', '1')->orderBy('published_at', 'desc')->orderBy('id', 'desc')->limit($limit)->get()->toArray();
       $item = Item::findOrFail($item_id)->toArray();
       return view('posts.summary', compact('posts', 'item'));
     }
@@ -87,4 +87,16 @@ class PostsController extends Controller
     {
       return view('posts.getcode.summary', compact('item_id', 'num'));
     }
+
+    public function getDetail($post_id)
+    {
+      $post = Post::where('id', '=', $post_id)->where('state', '=', '1')->limit(1)->get()->toArray();
+      return view('posts.detail', compact('post'));
+    }
+
+    public function getGetcodedetail()
+    {
+      return view('posts.getcode.detail');
+    }
+
 }

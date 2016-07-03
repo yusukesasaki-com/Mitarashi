@@ -37,3 +37,11 @@ table input[id^="getcode_"] {
 table .state {
   width: 70px;
 }
+
+.red {
+  color: #f00;
+}
+
+.bold {
+  font-weight: bold;
+}

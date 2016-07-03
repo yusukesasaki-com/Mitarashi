@@ -34,7 +34,6 @@
               {!! link_to(url('posts/getcodesummary', [$item->id]), '取得', ['data-id' => $item->id, 'data-type' => 'summary', 'class' => 'getcode']) !!}
             </td>
             <td>
-              <input type="text" id="getcode_detail_{{ $item->id }}">
               {!! link_to(url('posts/getcodedetail', [$item->id]), '取得', ['data-id' => $item->id, 'data-type' => 'detail', 'class' => 'getcode']) !!}
             </td>
             <td>
@@ -58,11 +57,17 @@
     $('.getcode').on('click', function() {
       var id = $(this).data('id');
       var type = $(this).data('type');
-      var num = $('#getcode_' + type + '_' + id).val();
-      if (num > 0) {
-        var link = $(this).attr('href') + '/' + num;
+      if (type == 'detail') {
+        var link = $(this).attr('href');
         $(this).attr('href', link);
         return true;
+      } else {
+        var num = $('#getcode_' + type + '_' + id).val();
+        if (num > 0) {
+          var link = $(this).attr('href') + '/' + num;
+          $(this).attr('href', link);
+          return true;
+        }
       }
       return false;
     }).colorbox({iframe:true, width:"80%", height:"80%"});
